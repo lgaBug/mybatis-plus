@@ -1,13 +1,14 @@
 package com.lga.mpc.domain;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -20,31 +21,26 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_user")
-public class User extends Model<User> {
+@TableName("sys_department")
+public class Department extends Model<Department> {
 
     private static final long serialVersionUID=1L;
 
     /**
-     * 主键ID
+     * 主键
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
     /**
-     * 姓名
+     * 部门名称
      */
-    private String name;
+    private String departmentName;
 
     /**
-     * 年龄
+     * 部门位置
      */
-    private Integer age;
-
-    /**
-     * 邮箱
-     */
-    private String email;
+    private String departmentLocation;
 
 
     @Override

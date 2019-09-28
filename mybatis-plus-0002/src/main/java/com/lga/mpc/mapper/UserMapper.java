@@ -1,7 +1,7 @@
 package com.lga.mpc.mapper;
 
-import com.lga.mpc.domain.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lga.mpc.domain.User;
 
 /**
  * <p>

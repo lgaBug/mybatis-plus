@@ -1,7 +1,7 @@
 package com.lga.mpc.service;
 
-import com.lga.mpc.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lga.mpc.domain.User;
 
 /**
  * <p>

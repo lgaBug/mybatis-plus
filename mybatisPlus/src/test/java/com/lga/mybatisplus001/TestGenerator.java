@@ -7,10 +7,26 @@ import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.lga.mpc.mapper.UserMapper;
+import com.lga.mpc.service.IUserService;
+import main.Application;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class ,webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TestGenerator {
 
+
+
+    @Autowired
+    private IUserService userService;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Test
     public void test(){
@@ -25,10 +41,10 @@ public class TestGenerator {
         gc.setBaseColumnList(true); //开启通用字段
         gc.setBaseResultMap(true);  //基本的映射
         gc.setIdType(IdType.AUTO); //设置主键生成策略 字段增长
-        gc.setServiceName("%Service"); //设置服务的名称
-        gc.setServiceImplName("%ServiceImpl"); //设置服务的实现类名称
-        gc.setMapperName("%Mapper"); //设置dao层名称
-        gc.setOutputDir("E:\\jianshu\\mybatisPlus\\src\\main\\java"); //设置输出的目录
+        //gc.setServiceName("%Service"); //设置服务的名称
+        //gc.setServiceImplName("%ServiceImpl"); //设置服务的实现类名称
+        //gc.setMapperName("%BusinessMapper"); //设置dao层名称
+        gc.setOutputDir("E:\\jianshu\\mybatis-plus\\mybatisPlus\\src\\main\\java"); //设置输出的目录
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -56,17 +72,30 @@ public class TestGenerator {
         strategy.setColumnNaming(NamingStrategy.underline_to_camel); //下划线转驼峰
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
-        strategy.setInclude("sys_user");
+        strategy.setInclude("sys_user","sys_department");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix("sys_");
         mpg.setStrategy(strategy);
 
         mpg.execute();
 
-
-
-
-
     }
+
+    /**
+     * 测试service
+     */
+    @Test
+    public void testService(){
+        System.out.println("userService.list() = " + userService.list());
+    }
+
+    /**
+     * 测试mapper
+     */
+    @Test
+    public void testMapper(){
+        System.out.println("userMapper.selectList(null) = " + userMapper.selectList(null));
+    }
+
 
 }
